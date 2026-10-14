@@ -1,3 +1,4 @@
+
 # Exact Stochastic Simulation of Coupled Chemical Reactions
 
 This project implements the stochastic simulation algorithm introduced by Daniel T. Gillespie in his paper *Exact Stochastic Simulation of Coupled Chemical Reactions* (1977). The objective is to reproduce selected numerical results presented in the paper and explore the application of exact stochastic simulation to chemical reaction systems.
@@ -18,47 +19,47 @@ This project aims to implement the algorithm and reproduce selected results from
 
 The Gillespie algorithm, also known as the stochastic simulation algorithm (SSA), is an event-driven method for simulating the time evolution of a well-mixed system of chemical reactions.
 
-Consider a system containing \(N\) chemical species participating in \(M\) reaction channels. The state of the system at time \(t\) is represented by the molecular population vector
+Consider a system containing $N$ chemical species participating in $M$ reaction channels. The state of the system at time $t$ is represented by the molecular population vector
 
-\[
+$$
 \mathbf{X}(t) = (X_1(t), X_2(t), \ldots, X_N(t)),
-\]
+$$
 
-where \(X_i(t)\) is the number of molecules of species \(i\).
+where $X_i(t)$ is the number of molecules of species $i$.
 
-Each reaction channel \(\mu\) is associated with a propensity function \(a_\mu(\mathbf{X})\). Given the current state, \(a_\mu(\mathbf{X})\,dt\) gives the probability, to first order in \(dt\), that reaction \(\mu\) occurs during the next infinitesimal time interval \(dt\).
+Each reaction channel $\mu$ is associated with a propensity function $a_\mu(\mathbf{X})$. Given the current state, $a_\mu(\mathbf{X})\,dt$ gives the probability, to first order in $dt$, that reaction $\mu$ occurs during the next infinitesimal time interval $dt$.
 
 ### Algorithm
 
 At each iteration, the algorithm performs the following steps:
 
-1. **Initialize the system.** Specify the initial molecular populations, reaction channels, and kinetic parameters. Set the initial time to \(t=0\).
+1. **Initialize the system.** Specify the initial molecular populations, reaction channels, and kinetic parameters. Set the initial time to $t=0$.
 
-2. **Calculate the reaction propensities.** Evaluate the propensity \(a_\mu(\mathbf{X})\) for each reaction channel and calculate the total propensity:
+2. **Calculate the reaction propensities.** Evaluate the propensity $a_\mu(\mathbf{X})$ for each reaction channel and calculate the total propensity:
 
-   \[
-   a_0(\mathbf{X}) = \sum_{\mu=1}^{M} a_\mu(\mathbf{X}).
-   \]
+   $$
+   a_0(\mathbf{X}) = \sum_{\mu=1}^{M} a_\mu(\mathbf{X})
+   $$
 
-3. **Generate random numbers.** Draw two independent uniform random numbers \(r_1,r_2\in(0,1)\).
+3. **Generate random numbers.** Draw two independent uniform random numbers $r_1,r_2\in(0,1)$.
 
 4. **Determine the time to the next reaction.** Sample the waiting time from an exponential distribution:
 
-   \[
+   $$
    \tau = \frac{1}{a_0(\mathbf{X})}
-   \ln\left(\frac{1}{r_1}\right).
-   \]
+   \ln\left(\frac{1}{r_1}\right)
+   $$
 
-5. **Select the reaction channel.** Choose reaction \(\mu\) such that
+5. **Select the reaction channel.** Choose reaction $\mu$ such that
 
-   \[
+   $$
    \sum_{\nu=1}^{\mu-1} a_\nu(\mathbf{X})
    < r_2a_0(\mathbf{X})
    \leq
-   \sum_{\nu=1}^{\mu} a_\nu(\mathbf{X}).
-   \]
+   \sum_{\nu=1}^{\mu} a_\nu(\mathbf{X})
+   $$
 
-6. **Update the molecular populations.** Execute the selected reaction, update the state vector according to the reaction's stoichiometry, and advance time by \(t\leftarrow t+\tau\).
+6. **Update the molecular populations.** Execute the selected reaction, update the state vector according to the reaction's stoichiometry, and advance time by $t\leftarrow t+\tau$.
 
 7. **Repeat.** Recalculate the propensities and continue until the specified simulation stopping condition is reached.
 
@@ -94,4 +95,3 @@ The original publication is the primary reference for the algorithm and the nume
 ## 5. Scope and Future Work
 
 This project is part of a broader collection of stochastic simulation studies. Related projects will explore stochastic gene expression and nucleosome dynamics in separate branches of the repository.
-
