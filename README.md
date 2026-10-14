@@ -21,9 +21,9 @@ The Gillespie algorithm, also known as the stochastic simulation algorithm (SSA)
 
 Consider a system containing $N$ chemical species participating in $M$ reaction channels. The state of the system at time $t$ is represented by the molecular population vector
 
-$$
+```math
 \mathbf{X}(t) = (X_1(t), X_2(t), \ldots, X_N(t)),
-$$
+```
 
 where $X_i(t)$ is the number of molecules of species $i$.
 
