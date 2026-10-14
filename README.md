@@ -21,5 +21,3 @@ The projects use Gillespie's stochastic simulation algorithm for each of the mod
 ## Repository Organization
 
 Each project is maintained in its own branch, with the corresponding source code, documentation, and simulation results.
-
-Inline math test: $\sqrt{3x-1}+(1+x)^2$
