@@ -1,8 +1,0 @@
-.idea/
-__pycache__/
-*.py[cod]
-
-# Generated simulation outputs
-mean_bound_1.txt
-sd_bound_1.txt
-CV_bound_1.txt
